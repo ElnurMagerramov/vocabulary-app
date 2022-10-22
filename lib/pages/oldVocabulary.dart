@@ -37,18 +37,30 @@ class _OldVocabularyState extends State<OldVocabulary> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Container(
-                          width: 200,
-                          padding: EdgeInsets.all(4.0),
-                          child: Text("${new_data[index]['French']}")),
+                        width: 200,
+                        padding: EdgeInsets.all(4.0),
+                        child: new_data[index]['French'] == "French"
+                            ? Text("${new_data[index]['French']}",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0))
+                            : Text("${new_data[index]['French']}"),
+                      ),
                       Container(
                         color: Colors.black,
                         width: 1.0,
                         height: 50.0,
                       ),
                       Container(
-                          width: 200,
-                          padding: EdgeInsets.all(4.0),
-                          child: Text("${new_data[index]['English']}"))
+                        width: 200,
+                        padding: EdgeInsets.all(4.0),
+                        child: new_data[index]['English'] == "English"
+                            ? Text("${new_data[index]['English']}",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20.0))
+                            : Text("${new_data[index]['English']}"),
+                      )
                     ],
                   ),
                 );

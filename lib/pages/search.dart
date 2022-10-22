@@ -15,6 +15,8 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
+  Future<List<Vocabulary>>? _searchResult;
+  late Vocabulary word;
   int? selectedId;
   TextEditingController textController = TextEditingController();
   @override
@@ -22,7 +24,12 @@ class _SearchPageState extends State<SearchPage> {
     return Scaffold(
         appBar: AppBar(
           leading: Icon(Icons.search),
-          title: TextField(
+          title: TextFormField(
+            onFieldSubmitted: (value) {
+              setState(() {
+                _searchResult = DbHelper.instance.search(value);
+              });
+            },
             controller: textController,
             decoration: InputDecoration(hintText: "Search..."),
           ),
@@ -36,33 +43,41 @@ class _SearchPageState extends State<SearchPage> {
                 icon: Icon(Icons.close))
           ],
         ),
-        body: Center(
-            child: FutureBuilder<List<Vocabulary>>(
-                future: DbHelper.instance.getvocabulary(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<List<Vocabulary>> snapshot) {
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else if (snapshot.data?.length == 0) {
-                    return Center(
-                      child: Text("There is not result..."),
-                    );
-                  } else {
-                    return ListView.builder(
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
-                        Vocabulary word = snapshot.data![index];
-                        if (word.french == textController.text) {
-                          return wordLine(word);
-                        } else {
-                          return null;
-                        }
-                      },
-                    );
-                  }
-                })));
+        body: _searchResult != null ? getResults() : hasNotSearch());
+  }
+
+  Widget hasNotSearch() {
+    return Center(child: Text("Search word..."));
+  }
+
+  Center getResults() {
+    return Center(
+        child: FutureBuilder<List<Vocabulary>>(
+            future: _searchResult,
+            builder: (BuildContext context,
+                AsyncSnapshot<List<Vocabulary>> snapshot) {
+              if (!snapshot.hasData) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (snapshot.data?.length == 0) {
+                return Center(
+                  child: Text("There is not result..."),
+                );
+              } else {
+                return ListView.builder(
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (context, index) {
+                    word = snapshot.data![index];
+                    // if ("${word.french}" == textController.text) {
+                    return wordLine(word);
+                    // } else {
+                    //   return null;
+                    // }
+                  },
+                );
+              }
+            }));
   }
 
   wordLine(Vocabulary word) {
