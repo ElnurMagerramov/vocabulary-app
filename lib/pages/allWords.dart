@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:localhost/db/dbhelper.dart';
 import 'package:localhost/models/vacabulary.dart';
+import 'package:localhost/pages/oldVocabulary.dart';
+import 'package:localhost/pages/yourVocabulary.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -15,8 +16,14 @@ class AllWordsPage extends StatefulWidget {
   State<AllWordsPage> createState() => _AllWordsPageState();
 }
 
-class _AllWordsPageState extends State<AllWordsPage> {
-  int? selectedId;
+class _AllWordsPageState extends State<AllWordsPage>
+    with SingleTickerProviderStateMixin {
+  late TabController controlTab;
+
+  void initState() {
+    super.initState();
+    controlTab = TabController(length: 2, vsync: this);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,82 +41,27 @@ class _AllWordsPageState extends State<AllWordsPage> {
           backgroundColor: Colors.white,
           foregroundColor: Colors.blue,
         ),
-        body: Center(
-          child: FutureBuilder<List<Vocabulary>>(
-              future: DbHelper.instance.getvocabulary(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<List<Vocabulary>> snapshot) {
-                if (!snapshot.hasData) {
-                  return Center(child: Text('Loading...'));
-                }
-                return snapshot.data!.isEmpty
-                    ? Center(child: Text('No Words in your vacabulary.'))
-                    : ListView(
-                        children: snapshot.data!.map((Vocabulary) {
-                          return Center(
-                            child: Card(
-                              color: selectedId == Vocabulary.id
-                                  ? Colors.white70
-                                  : Colors.white,
-                              child: ListTile(
-                                  title: Text(
-                                    Vocabulary.french,
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20),
-                                  ),
-                                  subtitle: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Vocabulary.azerbaijani.trim() != ""
-                                          ? Text(
-                                              "Azerbaijani: ${Vocabulary.azerbaijani}")
-                                          : SizedBox(
-                                              height: 0,
-                                            ),
-                                      Vocabulary.english.trim() != ""
-                                          ? Text(
-                                              "English: ${Vocabulary.english}")
-                                          : SizedBox(
-                                              height: 0,
-                                            ),
-                                      Vocabulary.turkish.trim() != ""
-                                          ? Text(
-                                              "Turkish: ${Vocabulary.turkish}")
-                                          : SizedBox(
-                                              height: 0,
-                                            ),
-                                      Vocabulary.russ.trim() != ""
-                                          ? Text("Russian: ${Vocabulary.russ}")
-                                          : SizedBox(
-                                              height: 0,
-                                            ),
-                                    ],
-                                  ),
-                                  onLongPress: () {
-                                    setState(() {
-                                      DbHelper.instance.remove(Vocabulary.id!);
-                                    });
-                                  },
-                                  trailing: IconButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        DbHelper.instance
-                                            .remove(Vocabulary.id!);
-                                      });
-                                    },
-                                    icon: Icon(
-                                      Icons.delete,
-                                      color: Colors.red[700],
-                                    ),
-                                  )),
-                            ),
-                          );
-                        }).toList(),
-                      );
-              }),
-        ));
+        body: ListView(children: [
+          Column(
+            children: [
+              TabBar(
+                  controller: controlTab,
+                  indicatorColor: Colors.blue[800],
+                  labelColor: Colors.blue[800],
+                  unselectedLabelColor: Colors.grey,
+                  isScrollable: true,
+                  tabs: [
+                    Tab(child: Text("Your Vocabulary")),
+                    Tab(child: Text("French-English")),
+                  ]),
+              Container(
+                height: 450.0,
+                child: TabBarView(
+                    controller: controlTab,
+                    children: [YourVocabulary(), OldVocabulary()]),
+              )
+            ],
+          ),
+        ]));
   }
 }

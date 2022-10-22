@@ -51,7 +51,44 @@ class _SQLiteState extends State<SQLite> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         title: Text("Translate app"),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.all(0),
+          children: [
+            UserAccountsDrawerHeader(
+              accountName: Text("Elnur Meherremov"),
+              accountEmail: Text("elnur@gmail.com"),
+              currentAccountPicture: Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage("images/picture.webp")
+                        // NetworkImage('https://cdn.pixabay.com/photo/2016/03/26/22/13/man-1281562__340.jpg')
+                            ,
+                        fit: BoxFit.cover),
+                    borderRadius: BorderRadius.circular(50.0)),
+              ),
+              decoration: BoxDecoration(color: Colors.blue),
+            ),
+            ListTile(title: Text("Add your new word"), onTap: () {}),
+            ListTile(
+              title: Text("Words"),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text("Settings"),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text("Log out"),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            )
+          ],
+        ),
       ),
       body: PageView(
         // physics: NeverScrollableScrollPhysics(),
