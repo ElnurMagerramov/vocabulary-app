@@ -38,8 +38,8 @@ class _SQLiteState extends State<SQLite> {
           padding: EdgeInsets.all(0),
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text("Elnur Meherremov"),
-              accountEmail: Text("elnur@gmail.com"),
+              accountName: Text("Username"),
+              accountEmail: Text("user-email"),
               currentAccountPicture: Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
