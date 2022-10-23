@@ -1,30 +1,8 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:localhost/db/dbhelper.dart';
-import 'package:localhost/models/vacabulary.dart';
 import 'package:localhost/pages/add.dart';
 import 'package:localhost/pages/allWords.dart';
 import 'package:localhost/pages/search.dart';
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:sqflite/sqflite.dart';
-
-// class SQLite extends StatefulWidget {
-//   const SQLite({super.key});
-
-//   @override
-//   State<SQLite> createState() => _SQLiteState();
-// }
-
-// class _SQLiteState extends State<SQLite> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return SearchPage();
-//   }
-// }
 
 class SQLite extends StatefulWidget {
   const SQLite({super.key});
@@ -65,9 +43,7 @@ class _SQLiteState extends State<SQLite> {
               currentAccountPicture: Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage("images/picture.webp")
-                        // NetworkImage('https://cdn.pixabay.com/photo/2016/03/26/22/13/man-1281562__340.jpg')
-                        ,
+                        image: AssetImage("images/picture.webp"),
                         fit: BoxFit.cover),
                     borderRadius: BorderRadius.circular(50.0)),
               ),

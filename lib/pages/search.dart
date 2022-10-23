@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:localhost/pages/oldSearch.dart';
 import 'package:localhost/pages/yourSearch.dart';
 
