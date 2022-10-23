@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:localhost/db/dbhelper.dart';
 import 'package:localhost/models/vacabulary.dart';
@@ -66,23 +67,53 @@ class _SQLiteState extends State<SQLite> {
                     image: DecorationImage(
                         image: AssetImage("images/picture.webp")
                         // NetworkImage('https://cdn.pixabay.com/photo/2016/03/26/22/13/man-1281562__340.jpg')
-                            ,
+                        ,
                         fit: BoxFit.cover),
                     borderRadius: BorderRadius.circular(50.0)),
               ),
               decoration: BoxDecoration(color: Colors.blue),
             ),
-            ListTile(title: Text("Add your new word"), onTap: () {}),
+            ListTile(
+                title: Text("Add your new word"),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => AddPage(),
+                      ));
+                }),
             ListTile(
               title: Text("Words"),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                      builder: (context) => AllWordsPage(),
+                    ));
+              },
             ),
             ListTile(
-              title: Text("Settings"),
-              onTap: () {},
+              title: Text("Search"),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                      builder: (context) => SearchPage(),
+                    ));
+              },
             ),
             ListTile(
-              title: Text("Log out"),
+              title: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.red,
+                  ),
+                  padding: EdgeInsets.all(10.0),
+                  child: Center(
+                      child: Text(
+                    "Close",
+                    style: TextStyle(color: Colors.white),
+                  ))),
               onTap: () {
                 Navigator.pop(context);
               },

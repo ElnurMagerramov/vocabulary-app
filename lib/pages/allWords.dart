@@ -29,14 +29,22 @@ class _AllWordsPageState extends State<AllWordsPage>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: Icon(
-            Icons.language,
-            size: 30.0,
-          ),
           title: Center(
-              child: Text(
-            "All words",
-            style: TextStyle(fontSize: 30.0),
+              child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.language,
+                size: 30.0,
+              ),
+              SizedBox(
+                width: 15.0,
+              ),
+              Text(
+                "All words",
+                style: TextStyle(fontSize: 30.0),
+              ),
+            ],
           )),
           backgroundColor: Colors.white,
           foregroundColor: Colors.blue,

@@ -14,7 +14,7 @@ class AddPage extends StatefulWidget {
   State<AddPage> createState() => _AddPageState();
 }
 
-class _AddPageState extends State<AddPage>{
+class _AddPageState extends State<AddPage> {
   int? selectedId;
   TextEditingController textController = TextEditingController();
   TextEditingController azTextController = TextEditingController();
@@ -25,14 +25,22 @@ class _AddPageState extends State<AddPage>{
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: Icon(
-            Icons.new_label,
-            size: 30.0,
-          ),
           title: Center(
-              child: Text(
-            "Add new word",
-            style: TextStyle(fontSize: 30.0),
+              child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.new_label,
+                size: 30.0,
+              ),
+              SizedBox(
+                width: 15.0,
+              ),
+              Text(
+                "Add new word",
+                style: TextStyle(fontSize: 30.0),
+              ),
+            ],
           )),
           backgroundColor: Colors.white,
           foregroundColor: Colors.blue,

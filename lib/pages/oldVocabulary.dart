@@ -9,11 +9,6 @@ class OldVocabulary extends StatefulWidget {
 }
 
 class _OldVocabularyState extends State<OldVocabulary> {
-  List? data;
-  List vocabulary = [
-    "l’adolescence - adolescence",
-    "l’âge de raison - grown-up age",
-  ];
   @override
   Widget build(BuildContext context) {
     return Center(
