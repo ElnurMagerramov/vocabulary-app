@@ -8,12 +8,12 @@ This project is a starting point for a Flutter application.
 
 | Image 1 | Image 2 |
 | ------- | ------- |
-| ![Image 1](images/image1.jpg) | ![Image 2](images/image2.jpg) |
+| ![Image 1](images/WhatsApp Image 2023-12-26 at 18.18.04.jpeg) | ![Image 2](images/WhatsApp Image 2023-12-26 at 18.18.04 (1).jpeg) |
 
 | Image 3 | Image 4 |
 | ------- | ------- |
-| ![Image 3](images/image3.jpg) | ![Image 4](images/image4.jpg) |
+| ![Image 3](images/WhatsApp Image 2023-12-26 at 18.18.04 (2).jpeg) | ![Image 4](images/WhatsApp Image 2023-12-26 at 18.18.05.jpeg) |
 
 | Image 5 | Image 6 |
 | ------- | ------- |
-| ![Image 5](images/image5.jpg) | ![Image 6](images/image6.jpg) |
+| ![Image 5](images/WhatsApp Image 2023-12-26 at 18.18.05 (1).jpeg) | ![Image 6](images/WhatsApp Image 2023-12-26 at 18.18.05 (2).jpeg) |
